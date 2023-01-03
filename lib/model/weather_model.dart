@@ -9,7 +9,6 @@ class WeatherModel {
   WeatherModel(this.temperature, this.humidity, this.wind, this.seaLevel,
       this.main, this.name);
 
-  String? badWeather = '';
 
   WeatherModel.fromJson(Map<String, dynamic> json)
       : temperature = json['main']['temp'],
@@ -77,13 +76,21 @@ class WeatherModel {
     }
   }
 
-  String? badWeatherCheck(){
+  String? badWeather(){
+    if( main == 'Rain' || main == 'Clouds'){
+      return 'Humidity looks ${humidityDescription() ?? 'Like we Can\'t get the value from it'}, sea level looks '
+          '${seaLevelDescription() ?? 'Like we Can\'t get the value from it'} '
+          'and wind looks ${windLevelDescription() ?? 'Like we Can\'t get the value from it'}, '
+          'Let\'s get the fish from the supermarket instead';}
+    return
+      'Humidity looks ${humidityDescription() ?? 'Like we Can\'t get the value from it'}, sea level looks '
+          '${seaLevelDescription() ?? 'Like we Can\'t get the value from it'} '
+          'and wind looks ${windLevelDescription() ?? 'Like we Can\'t get the value from it'}, '
+          'Let\'s get that fishing starting, and catch some douradas to your friends';
 
-    if(main == 'Rain' || main == 'Clouds'){
-      badWeather = 'bad';
     }
-    return null;
   }
-}
+
+
 
 
