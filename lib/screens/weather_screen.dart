@@ -8,8 +8,6 @@ import '../constants.dart';
 class WeatherScreen extends StatelessWidget {
   const WeatherScreen({super.key});
 
-  static const String id = 'weather_screen';
-
   @override
   Widget build(BuildContext context) {
     return Consumer<CityProvider>(
