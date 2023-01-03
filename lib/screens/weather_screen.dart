@@ -78,30 +78,28 @@ class WeatherScreen extends StatelessWidget {
                           fontWeight: FontWeight.w700),
                     ),
                   ),
-                  SingleChildScrollView(
+                  ListView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        WeatherContainer(
-                          titleText: 'Humidity',
-                          value: value.weather?.humidity?.toInt() == null
-                              ? 'No data'
-                              : '${value.weather?.humidity?.toInt()}%',
-                        ),
-                        WeatherContainer(
-                          titleText: 'Sea Level',
-                          value: value.weather?.seaLevel?.toInt() == null
-                              ? 'No data'
-                              : '${value.weather?.seaLevel?.toInt()}m',
-                        ),
-                        WeatherContainer(
-                          titleText: 'Wind',
-                          value: value.weather?.wind?.toInt() == null
-                              ? 'No data'
-                              : '${value.weather?.wind?.toInt()}km/h',
-                        ),
-                      ],
-                    ),
+                    children: [
+                      WeatherContainer(
+                        titleText: 'Humidity',
+                        value: value.weather?.humidity?.toInt() == null
+                            ? 'No data'
+                            : '${value.weather?.humidity?.toInt()}%',
+                      ),
+                      WeatherContainer(
+                        titleText: 'Sea Level',
+                        value: value.weather?.seaLevel?.toInt() == null
+                            ? 'No data'
+                            : '${value.weather?.seaLevel?.toInt()}m',
+                      ),
+                      WeatherContainer(
+                        titleText: 'Wind',
+                        value: value.weather?.wind?.toInt() == null
+                            ? 'No data'
+                            : '${value.weather?.wind?.toInt()}km/h',
+                      ),
+                    ],
                   ),
                   Container(
                     decoration: BoxDecoration(
