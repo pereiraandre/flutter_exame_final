@@ -55,14 +55,14 @@ class WeatherScreen extends StatelessWidget {
               ),
               body: SingleChildScrollView(
                 scrollDirection: Axis.vertical,
-                child: Container(
-                  height: MediaQuery.of(context).size.height,
+                child: SizedBox(
+                  height: 767.0,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 68.0, left: 20.0),
+                        padding: const EdgeInsets.only(left: 20.0, top: 68.0),
                         child: Text(
                           value.weather?.main == null
                               ? 'No data'
@@ -82,36 +82,34 @@ class WeatherScreen extends StatelessWidget {
                               fontWeight: FontWeight.w700),
                         ),
                       ),
+                      const SizedBox(height: 116.0,),
                       Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 116.0, bottom: 116.0),
-                          child: ListView(
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                                WeatherContainer(
-                                  titleText: 'Humidity',
-                                  value: value.weather?.humidity?.toInt() == null
-                                      ? 'No data'
-                                      : '${value.weather?.humidity?.toInt()}%',
-                                ),
-                                WeatherContainer(
-                                  titleText: 'Sea Level',
-                                  value: value.weather?.seaLevel?.toInt() == null
-                                      ? 'No data'
-                                      : '${value.weather?.seaLevel?.toInt()}m',
-                                ),
-                                WeatherContainer(
-                                  titleText: 'Wind',
-                                  value: value.weather?.wind?.toInt() == null
-                                      ? 'No data'
-                                      : '${value.weather?.wind?.toInt()}km/h',
-                                ),
-                              ],
-                          ),
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                              WeatherContainer(
+                                titleText: 'Humidity',
+                                value: value.weather?.humidity?.toInt() == null
+                                    ? 'No data'
+                                    : '${value.weather?.humidity?.toInt()}%',
+                              ),
+                              WeatherContainer(
+                                titleText: 'Sea Level',
+                                value: value.weather?.seaLevel?.toInt() == null
+                                    ? 'No data'
+                                    : '${value.weather?.seaLevel?.toInt()}m',
+                              ),
+                              WeatherContainer(
+                                titleText: 'Wind',
+                                value: value.weather?.wind?.toInt() == null
+                                    ? 'No data'
+                                    : '${value.weather?.wind?.toInt()}km/h',
+                              ),
+                            ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(top: 58.0, bottom: 130.0, right: 25.0,
+                        padding: const EdgeInsets.only(bottom: 130.0, right: 25.0, top: 116.0,
                           left: 25.0,),
                         child: Container(
                           decoration: BoxDecoration(
