@@ -17,6 +17,18 @@ class WeatherScreen extends StatelessWidget {
         var badWeather =
             value.weather?.main == 'Rain' || value.weather?.main == 'Clouds';
         var darkColor = badWeather ? Colors.black : Colors.white;
+
+        List<WeatherContainer> listWeatherValues = [
+          WeatherContainer(titleText: 'Humidity', value: value.weather?.humidity?.toInt() == null
+              ? 'No data'
+              : '${value.weather?.humidity?.toInt()}%',),
+          WeatherContainer(titleText: 'Sea Level', value: value.weather?.seaLevel?.toInt() == null
+              ? 'No data'
+              : '${value.weather?.seaLevel?.toInt()}m'),
+          WeatherContainer(titleText: 'Wind', value: value.weather?.wind?.toInt() == null
+              ? 'No data'
+              : '${value.weather?.wind?.toInt()}km/h'),
+        ];
         return Container(
           height: MediaQuery.of(context).size.height,
           width: MediaQuery.of(context).size.width,
@@ -28,37 +40,37 @@ class WeatherScreen extends StatelessWidget {
                 fit: BoxFit.cover),
           ),
           child: SafeArea(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: PreferredSize(
-                preferredSize: const Size.fromHeight(100),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    BackButton(
-                      onPressed: () {
-                        value.deleteCity();
-                        value.weather = null;
-                        Navigator.pop(context);
-                      },
-                      color: darkColor,
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Container(
+                height: MediaQuery.of(context).size.height,
+                width: MediaQuery.of(context).size.width,
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  appBar: PreferredSize(
+                    preferredSize: const Size.fromHeight(100),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        BackButton(
+                          onPressed: () {
+                            value.deleteCity();
+                            value.weather = null;
+                            Navigator.pop(context);
+                          },
+                          color: darkColor,
+                        ),
+                        Text(
+                          value.weather?.name == null
+                              ? 'No data'
+                              : '${value.weather?.name}',
+                          style: kTextWeatherScreen.copyWith(color: darkColor),
+                        ),
+                        SaveButton(darkColor),
+                      ],
                     ),
-                    Text(
-                      value.weather?.name == null
-                          ? 'No data'
-                          : '${value.weather?.name}',
-                      style: kTextWeatherScreen.copyWith(color: darkColor),
-                    ),
-                    SaveButton(darkColor),
-                  ],
-                ),
-              ),
-              body: SingleChildScrollView(
-                scrollDirection: Axis.vertical,
-                child: SizedBox(
-                  height: 767.0,
-                  width: MediaQuery.of(context).size.width,
-                  child: Column(
+                  ),
+                  body: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
@@ -84,30 +96,14 @@ class WeatherScreen extends StatelessWidget {
                       ),
                       const SizedBox(height: 116.0,),
                       Expanded(
-                        child: ListView(
+                        child: ListView.builder(itemBuilder: (BuildContext context, int index){
+                          return WeatherContainer(titleText: listWeatherValues[index].titleText, value: listWeatherValues[index].value);
+                        },
                           scrollDirection: Axis.horizontal,
-                          children: [
-                              WeatherContainer(
-                                titleText: 'Humidity',
-                                value: value.weather?.humidity?.toInt() == null
-                                    ? 'No data'
-                                    : '${value.weather?.humidity?.toInt()}%',
-                              ),
-                              WeatherContainer(
-                                titleText: 'Sea Level',
-                                value: value.weather?.seaLevel?.toInt() == null
-                                    ? 'No data'
-                                    : '${value.weather?.seaLevel?.toInt()}m',
-                              ),
-                              WeatherContainer(
-                                titleText: 'Wind',
-                                value: value.weather?.wind?.toInt() == null
-                                    ? 'No data'
-                                    : '${value.weather?.wind?.toInt()}km/h',
-                              ),
-                            ],
-                        ),
-                      ),
+                          shrinkWrap: true,
+                          itemCount: listWeatherValues.length,
+                          padding: const EdgeInsets.only(left: 15.0, right: 15.0 ),
+                        ),),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 130.0, right: 25.0, top: 116.0,
                           left: 25.0,),
@@ -135,8 +131,7 @@ class WeatherScreen extends StatelessWidget {
                 ),
               ),
             ),
-          ),
-        );
+          ));
       },
     );
   }
