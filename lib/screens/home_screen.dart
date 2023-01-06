@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_exame_final/components/first_state.dart';
-import 'package:flutter_exame_final/components/loading_state.dart';
+import 'package:flutter_exame_final/screens/first_screen.dart';
+import 'package:flutter_exame_final/screens/loading_screen.dart';
 import 'package:flutter_exame_final/provider/city_provider.dart';
 import 'package:flutter_exame_final/screens/weather_screen.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.only(top: 52.0),
                 child: Text(
-                  'Should i go fishing?',
+                  'Should I go fishing?',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 35.0,
@@ -42,16 +42,16 @@ class HomeScreen extends StatelessWidget {
               Consumer<CityProvider>(
                 builder: (context, city, child) {
                   if (city.loading) {
-                    return const LoadingState();
+                    return const LoadingScreen();
                   }
-                  if (city.weather != null) {
+                  if (city.isChecked == true) {
                     WidgetsBinding.instance.addPostFrameCallback((_) =>
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => WeatherScreen())));
                   }
-                  return FirstState();
+                  return FirstScreen();
                 },
               ),
             ],

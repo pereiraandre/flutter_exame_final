@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'primary_button.dart';
-import 'getcity_text_field.dart';
+import '../components/primary_button.dart';
+import '../components/getcity_text_field.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_exame_final/provider/city_provider.dart';
 
-class FirstState extends StatelessWidget {
-  const FirstState({
+class FirstScreen extends StatelessWidget {
+  const FirstScreen({
     Key? key,
   }) : super(key: key);
 

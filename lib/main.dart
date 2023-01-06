@@ -3,6 +3,7 @@ import 'package:flutter_exame_final/provider/city_provider.dart';
 import 'package:flutter_exame_final/screens/home_screen.dart';
 import 'package:provider/provider.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,3 +22,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+

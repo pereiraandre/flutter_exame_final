@@ -12,14 +12,6 @@ class WeatherServices {
 
   static WeatherServices get instance => _instance;
 
-  Future<WeatherModel> getCityWeather(String cityName) async {
-    NetworkHelper networkHelper = NetworkHelper(
-        '$openWeatherMapURL?q=$cityName&appid=$apiKey&units=metric');
-    var weatherMap = await networkHelper.getData();
-    WeatherModel weatherModel = WeatherModel.fromJson(weatherMap);
-    return weatherModel;
-  }
-
   Future<WeatherModel?> getCoordinates(String lat, String long) async {
     NetworkHelper networkHelper = NetworkHelper(
         '$openWeatherMapURL?lat=$lat&lon=$long&appid=$apiKey&units=metric');

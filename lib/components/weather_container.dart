@@ -12,31 +12,27 @@ class WeatherContainer extends StatelessWidget {
     return Container(
       height: 80.0,
       width: 120.0,
-      margin: const EdgeInsets.only(
-          top: 151.0, bottom: 116.0, right: 14.0, left: 14.0),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15.0),
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              right: 12.0,
-              left: 12.0,
-            ),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.all(12.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Text(
               titleText,
+              overflow: TextOverflow.ellipsis,
               style: kTextWeatherScreen,
             ),
-          ),
-          Text(
-            value,
-            style: kTextWeatherScreen.copyWith(fontWeight: FontWeight.w400),
-          ),
-        ],
+            Text(
+              value,
+              style: kTextWeatherScreen.copyWith(fontWeight: FontWeight.w400),
+            ),
+          ],
+        ),
       ),
     );
   }

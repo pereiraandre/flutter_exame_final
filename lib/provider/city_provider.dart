@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_exame_final/model/weather_model.dart';
 import 'package:flutter_exame_final/services/weather.dart';
@@ -16,26 +15,16 @@ class CityProvider extends ChangeNotifier {
 
   WeatherModel? weather;
 
+  bool isChecked = false;
+
+
   saveCity(String name) {
     _name = name;
     notifyListeners();
   }
 
-  getCityWeather() async {
-    loading = true;
-    notifyListeners();
-    weather = await _weatherServices.getCityWeather(_name);
-    loading = false;
-    notifyListeners();
-  }
-
   deleteCity() {
     _name = '';
-    notifyListeners();
-  }
-
-  deleteLoading() {
-    loading = false;
     notifyListeners();
   }
 
@@ -48,15 +37,19 @@ class CityProvider extends ChangeNotifier {
         String? lat = locations.first.latitude.toString();
         String? long = locations.first.longitude.toString();
         weather = await _weatherServices.getCoordinates(lat, long);
+        isChecked = true;
       }
     } catch (e) {
       Fluttertoast.showToast(
-          msg: 'City not found',
+          msg: e.toString(),
           backgroundColor: Colors.green,
-          gravity: ToastGravity.CENTER);
+          gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 3);
     }
-
     loading = false;
     notifyListeners();
+
   }
+
+
 }

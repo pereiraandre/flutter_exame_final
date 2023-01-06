@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import '../constants.dart';
 
-class LoadingState extends StatelessWidget {
-  const LoadingState({
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({
     Key? key,
   }) : super(key: key);
 
@@ -15,8 +15,7 @@ class LoadingState extends StatelessWidget {
           SizedBox(
             height: 200.0,
           ),
-          Text('We\'re seeing if it\'s safe',
-              style: kTextLoadingScreen),
+          Text('We\'re seeing if it\'s safe', style: kTextLoadingScreen),
           Text(
             ' for you, hold',
             style: kTextLoadingScreen,

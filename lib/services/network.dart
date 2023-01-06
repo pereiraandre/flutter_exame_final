@@ -13,17 +13,12 @@ class NetworkHelper {
     if (response.statusCode == 200) {
       final weatherData = jsonDecode(response.body) as Map<String, dynamic>;
       return weatherData;
-    }   }
+    }  }
     catch (e){
-      return e;
+      rethrow;
     }
   }
 }
-
-
-
-
-
 
 
 
